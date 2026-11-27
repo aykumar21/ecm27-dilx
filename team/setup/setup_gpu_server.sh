@@ -55,7 +55,8 @@ else
   git clone "$REPO_URL" "$REPO_DIR"
 fi
 git -C "$REPO_DIR" remote get-url upstream >/dev/null 2>&1 || git -C "$REPO_DIR" remote add upstream "$UPSTREAM_URL"
-git -C "$REPO_DIR" lfs pull
+# Assets (Git LFS): from our repo if uploaded there, else straight from the organisers' repo.
+git -C "$REPO_DIR" lfs pull origin || git -C "$REPO_DIR" lfs pull upstream
 
 # ---------------------------------------------------------------- 3. Python 3.12 venv
 log "Creating Python 3.12 venv at $REPO_DIR/.venv"
