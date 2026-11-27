@@ -1,0 +1,16 @@
+**
+!robofinals/
+!robofinals/__init__.py
+!robofinals/distributed/
+!robofinals/distributed/chamber_schema.py
+!robofinals/distributed/grpc_policy.py
+!robofinals/distributed/policy_v1_pb2.py
+!team/
+!team/__init__.py
+!team/policy/
+!team/policy/**
+!team/docker/
+!team/docker/Dockerfile
+**/__pycache__
+# !checkpoints/
+# !checkpoints/**

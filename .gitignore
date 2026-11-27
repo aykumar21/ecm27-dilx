@@ -18,3 +18,16 @@ venv/
 build/
 dist/
 configs/evaluation/*.local.yml
+
+# Team DIL-X
+data/
+datasets/
+checkpoints/
+wandb/
+runs/
+*.ckpt
+*.pt
+*.safetensors
+*.tar
+logs/
+configs/evaluation/local/
