@@ -38,7 +38,7 @@ Ubuntu 22.04/24.04 x86_64. NVIDIA RTX-class GPU (Isaac Sim needs RT cores; A100/
 ## 4. Steps
 
 ```bash
-git clone https://github.com/aykumar21/ecm27-dilx.git ~/ecm27/ecm27-dilx   # needs gh auth / PAT
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/aykumar21/ecm27-dilx.git ~/ecm27/ecm27-dilx   # needs gh auth / PAT
 bash ~/ecm27/ecm27-dilx/team/setup/setup_gpu_server.sh                  # ~30-60 min, mostly Isaac Sim download
 #   options: WORKDIR=/data/ecm27  DATA_DIR=/data/ecm27/data  SKIP_APT=1  SKIP_DATA=1
 cd ~/ecm27/ecm27-dilx && source .venv/bin/activate

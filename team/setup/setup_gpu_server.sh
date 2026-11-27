@@ -52,7 +52,7 @@ log "Cloning team repo"
 if [[ -d "$REPO_DIR/.git" ]]; then
   git -C "$REPO_DIR" pull --ff-only || warn "pull failed (local changes?) — continuing with current checkout"
 else
-  git clone "$REPO_URL" "$REPO_DIR"
+  GIT_LFS_SKIP_SMUDGE=1 git clone "$REPO_URL" "$REPO_DIR"
 fi
 git -C "$REPO_DIR" remote get-url upstream >/dev/null 2>&1 || git -C "$REPO_DIR" remote add upstream "$UPSTREAM_URL"
 # Assets (Git LFS): from our repo if uploaded there, else straight from the organisers' repo.
