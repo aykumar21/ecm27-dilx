@@ -94,6 +94,12 @@ cfg["layout"] = str(root / "robofinals/data/assets/Scene/scene04_1.usd")
 out = root / "configs/evaluation/local/chamber_server.local.json"
 out.write_text(json.dumps(cfg, indent=2) + "\n")
 print(out); print(json.dumps(cfg, indent=2))
+# Same config on the 27 Nov background scene (which scene the official evaluator renders is unconfirmed).
+bg = root / "robofinals/data/assets/SceneWithBackgroud/scene04_1.usd"
+if bg.exists():
+    cfg["layout"] = str(bg)
+    out_bg = root / "configs/evaluation/local/chamber_server.background.json"
+    out_bg.write_text(json.dumps(cfg, indent=2) + "\n"); print(out_bg)
 PY
 
 # ---------------------------------------------------------------- 6. checks
@@ -104,12 +110,12 @@ python -m pytest -q robofinals/tests/test_grpc_policy.py || warn "gRPC test fail
 
 # ---------------------------------------------------------------- 7. dataset sample
 if [[ "${SKIP_DATA:-0}" != 1 ]]; then
-  log "Downloading dataset metadata + 1 sample LeRobot episode to $DATA_DIR (full set is ~1.5 TB — NOT downloaded)"
+  log "Downloading 1 batch-1 HDF5 demo (~2.9 GB) to $DATA_DIR (full set is ~1.5 TB — NOT downloaded; LeRobot copies are deprecated)"
   mkdir -p "$DATA_DIR"
   hf download "$HF_DATASET" --repo-type dataset --local-dir "$DATA_DIR/ecm2027_sim_data" \
-     --include "meta/*" "data/*" "videos/*" \
+     --include "${DATA_INCLUDE:-Roco/batch1/ChamberServiceTask_1793172869923601/*}" \
    || huggingface-cli download "$HF_DATASET" --repo-type dataset --local-dir "$DATA_DIR/ecm2027_sim_data" \
-     --include "meta/*" "data/*" "videos/*" \
+     --include "${DATA_INCLUDE:-Roco/batch1/ChamberServiceTask_1793172869923601/*}" \
    || warn "dataset download failed (run 'hf auth login' if the repo is gated)"
 fi
 

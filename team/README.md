@@ -3,6 +3,8 @@
 Everything outside `team/` is the upstream starter code (`upstream` remote, rocochallenge/ecm2027_sim_track).
 Keep our changes inside `team/` so upstream merges stay conflict-free.
 
+**Plan and task split: [`team/PLAN.md`](PLAN.md).**
+
 | Path | Purpose |
 |---|---|
 | `team/setup/` | GPU server bootstrap (`setup_gpu_server.sh`), simulator smoke test, `SETUP.md` (task, data, interface notes) |
